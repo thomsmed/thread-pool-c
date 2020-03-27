@@ -1,0 +1,87 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "clang build debug",
+            "command": "/usr/bin/clang",
+            "args": [
+                "-std=c17",
+                "-g",
+                "${workspaceFolder}/*.c",
+                "-o",
+                "${workspaceFolder}/ThreadPool"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "shell",
+            "label": "clang build",
+            "command": "/usr/bin/clang",
+            "args": [
+                "-std=c17",
+                "${workspaceFolder}/*.c",
+                "-o",
+                "${workspaceFolder}/ThreadPool"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        },
+        {
+			"type": "shell",
+			"label": "gcc build debug",
+			"command": "/usr/bin/gcc",
+			"args": [
+                "-std=c11",
+				"-g",
+				"${workspaceFolder}/*.c",
+				"-o",
+                "${workspaceFolder}/ThreadPool",
+                "-lpthread",
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"type": "shell",
+			"label": "gcc build",
+			"command": "/usr/bin/gcc",
+			"args": [
+                "-std=c11",
+				"${workspaceFolder}/*.c",
+				"-o",
+                "${workspaceFolder}/ThreadPool",
+                "-lpthread",
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build"
+		}
+    ]
+}
