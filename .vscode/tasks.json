@@ -42,46 +42,46 @@
             "group": "build"
         },
         {
-			"type": "shell",
-			"label": "gcc build debug",
-			"command": "/usr/bin/gcc",
-			"args": [
+            "type": "shell",
+            "label": "gcc build debug",
+            "command": "/usr/bin/gcc",
+            "args": [
                 "-std=c11",
-				"-g",
-				"${workspaceFolder}/*.c",
-				"-o",
+                "-g",
+                "${workspaceFolder}/*.c",
+                "-o",
                 "${workspaceFolder}/ThreadPool",
                 "-lpthread",
-			],
-			"options": {
-				"cwd": "${workspaceFolder}"
-			},
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			}
-		},
-		{
-			"type": "shell",
-			"label": "gcc build",
-			"command": "/usr/bin/gcc",
-			"args": [
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "shell",
+            "label": "gcc build",
+            "command": "/usr/bin/gcc",
+            "args": [
                 "-std=c11",
-				"${workspaceFolder}/*.c",
-				"-o",
+                "${workspaceFolder}/*.c",
+                "-o",
                 "${workspaceFolder}/ThreadPool",
                 "-lpthread",
-			],
-			"options": {
-				"cwd": "${workspaceFolder}"
-			},
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": "build"
-		}
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        }
     ]
 }

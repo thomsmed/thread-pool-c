@@ -55,8 +55,10 @@ int* someStringManipulatingWork(char* p_string) {
 double* someRandomCalculationWork(int* p_seed) {
     printf("Doing some random calculation work...\n");
     srand(*p_seed);
-    double* d = malloc(sizeof(int));
+    double* d = malloc(sizeof(double));
     *d = rand();
-    printf("Random calculation work doen!\n");
+    *d /= RAND_MAX;
+    *d *= 1000;
+    printf("Random calculation work done!\n");
     return d;
 };

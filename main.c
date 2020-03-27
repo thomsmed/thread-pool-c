@@ -9,9 +9,8 @@ int main() {
 
    struct ThreadPool* p_threadPool = thread_pool_create(5);
 
-   ThreadPoolTask* p_task;
-   int intArg1[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-   int intArg2[] = { 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
+   int intArg1[] = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
+   int intArg2[] = { 110, 120, 130, 140, 150, 160, 170, 180, 190, 200 };
    char textArg[10][30] = {
       "Hello World",
       "Someone",
@@ -24,20 +23,38 @@ int main() {
       "Juice",
       "Orange"
    };
+
+   int* p_intResults1[10];
+   int* p_intResults2[10];
+   double* p_doubleResults[10];
+
+   ThreadPoolTask* p_task;
    for (int i = 0; i < 10; i++)
    {
-      p_task = thread_pool_task_create((void* (*)(void*)) someCountingWork, &intArg1[i], NULL);
+      p_task = thread_pool_task_create((void* (*)(void*)) someCountingWork, &intArg1[i], (void**) &p_intResults1[i]);
       thread_pool_enqueue(p_threadPool, p_task);
-      p_task = thread_pool_task_create((void* (*)(void*)) someStringManipulatingWork, &textArg[i], NULL);
+      p_task = thread_pool_task_create((void* (*)(void*)) someStringManipulatingWork, &textArg[i], (void**) &p_intResults2[i]);
       thread_pool_enqueue(p_threadPool, p_task);
-      p_task = thread_pool_task_create((void* (*)(void*)) someRandomCalculationWork, &intArg2[i], NULL);
+      p_task = thread_pool_task_create((void* (*)(void*)) someRandomCalculationWork, &intArg2[i], (void**) &p_doubleResults[i]);
       thread_pool_enqueue(p_threadPool, p_task);   
    }
    
+   printf("Done queueing work! Let's wait for it to complete...\n");
    thread_pool_destroy(p_threadPool, WAIT);
 
+   printf("\nResults from CountingWork: ");
    for (int i = 0; i < 10; i++) {
-      printf("%s\n", textArg[i]);
+      printf("%i, ", *(p_intResults1[i]));
+   }
+
+   printf("\nResults from StringManipulationWork: ");
+   for (int i = 0; i < 10; i++) {
+      printf("\n->(length: %i): %s", *(p_intResults2[i]), textArg[i]);
+   }
+
+   printf("\nResults from RandomCalculationWork: ");
+   for (int i = 0; i < 10; i++) {
+      printf("%f, ", *(p_doubleResults[i]));
    }
    
    return 0;

@@ -163,6 +163,13 @@ void thread_pool_destroy(ThreadPool* p_threadPool, char flags)
             code = pthread_join((p_threadPoolThread + i)->thread, NULL);
         }
     }
+
+    ThreadPoolTask* p_task = queue_dequeue(p_threadPool->p_completedTaskQueue);
+    while (p_task != NULL)
+    {
+        free(p_task);
+        p_task = queue_dequeue(p_threadPool->p_completedTaskQueue);
+    }
     
     free(p_threadPoolThread);
 
